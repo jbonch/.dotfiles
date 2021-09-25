@@ -16,7 +16,7 @@ Using this method, you don't have to deal with any simlinks so you can just add 
 
 **Create an alias so in the future we can just type `dotfiles status` or `dotfiles push` etc instead of `git`**
 
-`alias dotfiles='/usr/bin/git --git-dir=~/.dotfiles/ --work-tree=~/'`
+`alias dotfiles='/usr/bin/git --git-dir=$(echo $HOME)/.dotfiles/ --work-tree=$(echo $HOME)'`
 
 **Don't show me untracked files (you don't care about them and you don't want them to show up)**
 
@@ -24,7 +24,7 @@ Using this method, you don't have to deal with any simlinks so you can just add 
 
 **Add this line to your .bashrc file**
 
-`echo "alias dotfiles='/usr/bin/git --git-dir=~/.dotfiles/ --work-tree=~/'" >> ~/.bashrc`
+`echo "alias dotfiles='/usr/bin/git --git-dir=$(echo $HOME)/.dotfiles/ --work-tree=$(echo $HOME)'" >> ~/.bashrc`
 
 ## How to add new or changed config files
 
@@ -39,7 +39,7 @@ Using this method, you don't have to deal with any simlinks so you can just add 
 Create alias, reload bashrc, put cfg in gitignore, clone the bare repo, checkout and dont show untracked files, then clone vundle for plugins
 
 ```bash
-echo "alias dotfiles='/usr/bin/git --git-dir=~/.dotfiles/ --work-tree=~/'" >> ~/.bashrc
+echo "alias dotfiles='/usr/bin/git --git-dir=$(echo $HOME)/.dotfiles/ --work-tree=$(echo $HOME)'" >> ~/.bashrc
 source ~/.bashrc
 echo ".dotfiles" >> ~/.gitignore
 git clone --bare git@github.com:jbonch/.dotfiles.git .dotfiles/
