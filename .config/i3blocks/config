@@ -1,0 +1,154 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+SCRIPT_DIR=$HOME/.config/i3bocks/cmds
+DOCKLETS_DIR=$HOME/.config/i3bocks/blocklets
+command=$HOME/.config/i3blocks/blocklets/$BLOCK_NAME/$BLOCK_NAME
+
+# Global properties
+separator=true
+separator_block_width=15
+markup=pango
+align=center
+#color=#f8f8f2
+#https://fontawesome.com/cheatsheet
+
+#[documentation]
+#full_text=Documentation
+#website=https://vivien.github.io/i3blocks
+#command=xdg-open "$website"
+#color=#f12711
+
+[jira]
+label=<span foreground="#0052CC"></span>
+color=#8FBCBB
+interval=10
+host=
+
+[bitbucket]
+label=<span foreground="#0052CC"></span>
+color=#8FBCBB
+interval=10
+host=
+account_id=
+workspace=
+repo_slug=
+
+#[run-smth]
+#full_text=Run tg
+#command=i3-msg -q exec telegram-desktop
+
+#[click]
+#full_text=Click me!
+#command=echo "Got clicked with button $button"
+#color=#F79494
+
+[battery]
+interval=5
+
+[disk-root]
+label=/ 
+command=echo "$(df -Ph / | tail -1 | awk '{print $4}')"
+interval=30
+color=#1793D1
+
+#[disk-home]
+#label=~
+#command=echo "$(df -Ph ~ | tail -1 | awk '{print $4}')"
+#interval=30
+#color=#859900
+
+#[greetings]
+#color=#f5af19
+#command=echo "Hello, $USER!"
+#interval=once
+
+
+#[ip]
+#command=hostname -i | awk '{ print "IP:" $1 }'
+#interval=once
+#color=#91E78B
+
+[wifi]
+full_text=wifi
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | awk '{ printf "%i%\n", int($3 * 100 / 70) }'
+instance=wlp11s0f3u1
+interval=5
+min_width=80
+label=<span color="#f1fa8c"> </span>
+
+#[window]
+#command=xtitle -s
+#interval=persist
+
+#[gpu-load]
+#command=nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{ printf "%02i<span color=\"#8be9fd\"><b>%</b></span>\n", $0}'
+#label=<span color="#8be9fd"><b>GPU: </b></span>
+#interval=2
+
+#[gpu-temperature]
+#command=nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | awk '{ printf "%i<span color=\"#8be9fd\">sugar </span>\n", $0}'
+#interval=2
+
+[cpu_load]
+#install sysstat
+command=sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f<span color=\"#50fa7b\"><b>%</b></span>\n", (100 - $8) } '
+full_text=cpu
+min_width=60
+interval=2
+label=<span color="#50fa7b"> </span>
+#label=<span color="#50fa7b"><b>&#xf2db; </b></span>
+
+[cpu_temperature]
+#install lm_sensors
+command=sensors | awk '{ if ($1 == "CPU" && $2 == "Temperature:") { gsub(/[+°C]/, "") ; printf "%i<span color=\"#50fa7b\">sugar </span>\n", $3 } }'
+interval=2
+
+[memory]
+command=free -h --si | awk 'FNR==2{ print $0 }' | awk '{ print $7 }'
+interval=2
+#&#xf538;
+label=<span color="#f1fa8c"></span> 
+
+[volume]
+#command=pulseaudio-ctl full-status | awk '{ printf "%i%\n", $1 }'
+command=pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
+interval=1
+label=<span color="#ffb86c"> </span>
+
+[key_layout]
+#command=$SCRIPT_DIR/key_layout
+#command=xset -q|grep LED| awk '{ if (substr ($10,5,1) == 1) print "RU"; else print "EN"; }'
+command=xset -q|grep LED| awk '{ if (substr ($10,5,1) == 1) print "RU\nRU\n#0000FF"; else print "EN\nEN\n#FF0000"; }'
+label= 
+interval=1
+
+
+#[caps-lock]
+#command=xset -q | grep Caps | awk '{ print $2, $3, $4 }'
+#interval=once
+#signal=10
+
+[arch-update]
+command=checkupdates | wc -l
+interval=once
+label=<span color="#ff5555"></span>
+
+#[battery]
+#command=~/.config/i3blocks/cmds/battery.sh
+#interval=10
+
+[date]
+#command=date '+%d-%m-%Y %A %H:%M:%S'
+command=date '+%d-%m-%Y %B %A'
+label=<span color="#8be9fd"> </span>
+interval=1
+
+[time]
+command=date '+%H:%M:%S'
+interval=1
+label=<span color="#ff5555"> </span>
