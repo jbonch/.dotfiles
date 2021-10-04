@@ -171,12 +171,12 @@ set $ws2 "2:www "
 #set $ws2R "2_2:www"
 set $ws3 "3:sys "
 set $ws4 "4:doc "
-set $ws5 "5:msg 🗩︁"
-set $ws6 "6:media ▶︁"
+set $ws5 "5:msg "
+set $ws6 "6:media "
 set $ws7 "7:nav "
-set $ws8 "8:rem"
-set $ws9 "9"
-set $ws10 "10:fly"
+set $ws8 "8:rem "
+set $ws9 "9:game "
+set $ws10 "10:fly "
 set $ws11 "11:read ︁"
 
 #workspace $ws1 output $monL
@@ -318,7 +318,7 @@ assign [class="Skype|Slack|Telegram|^Viber$|^Microsoft Teams|zoom"] → $ws5
 #for_window [class="zoom" title="Settings"] floating enable, move position center
 #for_window [class="zoom" title="Zoom - Licensed Account"] floating enable, move position center
 #for_window [class="Skype|Slack|Telegram|^Viber$|^Microsoft Teams|zoom"] layout tabbed
-assign [class="^Quake*"] → $ws8
+assign [title="^Quake Champions"] → $ws9
 
 
 assign [class="Doublecmd"] → $ws7

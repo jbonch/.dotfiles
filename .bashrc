@@ -21,7 +21,39 @@ export GRADLE_HOME=/opt/gradle-7.1.1
 export KOTLIN_HOME=/opt/kotlinc-1.5.21
 export GRAILS_HOME=/opt/grails-4.0.12
 
+eval "$(zoxide init bash)"
+
 export PATH="$HOME/.local/bin:$KOTLIN_HOME/bin:$GROOVY_HOME/bin:$GRADLE_HOME/bin:$GRAILS_HOME/bin:$PATH"
-alias dotfiles='/usr/bin/git --git-dir=~/.dotfiles/ --work-tree=~/'
 alias dotfiles='/usr/bin/git --git-dir=$(echo $HOME)/.dotfiles/ --work-tree=$(echo $HOME)'
-alias fix-opera='sudo ~root/.scripts/fix-opera.sh' # Opera fix HTML5 media
+
+#export NNN_BMS='d:~/Documents;v:~/Video;D:~/Downloads/'
+#export NNN_SSHFS="sshfs -o follow_symlinks"        # make sshfs follow symlinks on the remote
+#export NNN_COLORS="2136"                           # use a different color for each context
+#export NNN_TRASH=1                                 # trash (needs trash-cli) instead of delete
+export NNN_PLUG='f:finder;j:autojump;d:dragdrop;o:fzopen;n:nuke;p:preview-tui'
+#if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
+#    source /usr/share/nnn/quitcd/quitcd.bash_zsh
+#fi
+source ~/.local/share/icons-in-terminal/icons_bash.sh
+#export NNN_COLORS='0000E6310000000000000000'
+export NNN_FCOLORS="AAAAE631BBBBCCCCDDDD9999"
+alias nnn="/bin/nnn -e" #-e to open text files in the terminal
+#alias ls="/bin/nnn -de"
+export NNN_FIFO="/tmp/nnn.fifo"
+#export SPLIT="w" # to split Kitty horisont
+export KITTY_LISTEN_ON="unix:/tmp/mykitty"
+#-----
+#n () # to cd on quit
+#{
+#    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+#        echo "nnn is already running"
+#        return
+#    fi
+#    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+#    nnn "$@"
+#    if [ -f "$NNN_TMPFILE" ]; then
+#            . "$NNN_TMPFILE"
+#            rm -f "$NNN_TMPFILE" > /dev/null
+#    fi
+#}
+
