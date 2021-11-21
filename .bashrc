@@ -20,10 +20,11 @@ export GROOVY_HOME=/opt/groovy-3.0.8
 export GRADLE_HOME=/opt/gradle-7.1.1
 export KOTLIN_HOME=/opt/kotlinc-1.5.21
 export GRAILS_HOME=/opt/grails-4.0.12
+#export JAVA_HOME=/opt/jdk17_35
 
 eval "$(zoxide init bash)"
 
-export PATH="$HOME/.local/bin:$KOTLIN_HOME/bin:$GROOVY_HOME/bin:$GRADLE_HOME/bin:$GRAILS_HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$JAVA_HOME/bin::$KOTLIN_HOME/bin:$GROOVY_HOME/bin:$GRADLE_HOME/bin:$GRAILS_HOME/bin:$PATH"
 alias dotfiles='/usr/bin/git --git-dir=$(echo $HOME)/.dotfiles/ --work-tree=$(echo $HOME)'
 
 #export NNN_BMS='d:~/Documents;v:~/Video;D:~/Downloads/'
@@ -41,6 +42,7 @@ alias nnn="/bin/nnn -e" #-e to open text files in the terminal
 #alias ls="/bin/nnn -de"
 export NNN_FIFO="/tmp/nnn.fifo"
 #export SPLIT="w" # to split Kitty horisont
+export SPLIT="v"
 export KITTY_LISTEN_ON="unix:/tmp/mykitty"
 #-----
 #n () # to cd on quit
