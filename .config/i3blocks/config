@@ -5,8 +5,8 @@
 #
 #     https://vivien.github.io/i3blocks
 
-SCRIPT_DIR=$HOME/.config/i3bocks/cmds
-DOCKLETS_DIR=$HOME/.config/i3bocks/blocklets
+#SCRIPT_DIR=$HOME/.config/i3bocks/cmds
+#DOCKLETS_DIR=$HOME/.config/i3bocks/blocklets
 command=$HOME/.config/i3blocks/blocklets/$BLOCK_NAME/$BLOCK_NAME
 
 # Global properties
