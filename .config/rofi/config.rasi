@@ -1,1 +1,8 @@
+configuration {
+    modi: "window,drun,ssh";
+	show-icons: true;
+	/*display-window: "Window";
+    display-drun: "Search";*/
+	display-combi: true;
+}
 @theme "/usr/share/rofi/themes/DarkBlue.rasi"
