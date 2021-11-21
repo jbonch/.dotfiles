@@ -36,7 +36,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 #https://www.reddit.com/r/i3wm/comments/d27jkn/reloading_i3_with_marked_windows_in_scratchpad/
 #bindsym $mod+Tab scratchpad show, resize set 1366 750, move position center
-for_window [instance="^term_scratchpad_[0-9]$"] move to scratchpad
+for_window [instance="^term_scratchpad_[0-9]$"] move scratchpad
 bindsym $mod+Shift+Return [instance="term_scratchpad_0"] scratchpad show
 bindsym $mod+Control+Return [instance="term_scratchpad_1"] scratchpad show
 #alt
@@ -49,6 +49,17 @@ exec kitty --name term_scratchpad_2 --title="Le' scratch 2"
 bindsym $mod+z exec kitty --name float
 for_window [instance="float"] floating enable
 #for_window [window_role="floating"] floating enable
+
+exec_always --no-startup-id kitti3 -p CT -s 0.8 0.7
+bindsym $mod+n nop kitti3
+
+
+exec --no-startup-id kitty --name dropdown 
+for_window [instance="dropdown"] floating enable, border none, move absolute position 0px 0px, resize set 600px 384px, move scratchpad
+bindsym $mod+m [instance="dropdown"] scratchpad show
+
+# with prompt
+bindsym $mod+y exec i3-quickterm shell
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -152,7 +163,7 @@ bindsym $mod+Mod1+f focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Mod1+a focus child
 
 floating_minimum_size 400 x 350
 floating_maximum_size 1800 x 900
@@ -324,6 +335,8 @@ assign [title="^Quake Champions"] → $ws9
 assign [class="Doublecmd"] → $ws7
 
 assign [class="^Steam$"] → $ws9
+#WM_NAME(UTF8_STRING) = "Steam"
+assign [title="^Steam$"] → $ws9
 
 #for_window [class="^Vivaldi$"] focus
 #for_window [class="^Vivaldi$"] floating enable
